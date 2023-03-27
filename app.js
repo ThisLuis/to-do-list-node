@@ -1,7 +1,7 @@
 import colors from 'colors';
 
 import { inquirerMenu, pause, readInput } from './helpers/inquirer.js';
-import { saveDB } from './helpers/saveFile.js';
+import { saveDB, readDB } from './helpers/saveFile.js';
 import Task from './models/task.js';
 import Tasks from './models/tasks.js';
 console.clear();
@@ -9,6 +9,14 @@ console.clear();
 const main = async() => {
     let opt = '';
     const tasks = new Tasks();
+
+    const tasksDB = readDB();
+
+    if( tasksDB ) {
+        // TODO: Llamar el metodo readTasks
+        tasks.loadTasksFromArr( tasksDB );
+    }
+
 
     do {
         opt = await inquirerMenu();
@@ -25,6 +33,7 @@ const main = async() => {
         }
 
         saveDB( tasks.listArr );
+        
 
         await pause();
     } while( opt !== '0');
