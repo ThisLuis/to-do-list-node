@@ -8,6 +8,7 @@ console.clear();
 
 const main = async() => {
     let opt = '';
+    let complete = false;
     const tasks = new Tasks();
 
     const tasksDB = readDB();
@@ -30,6 +31,14 @@ const main = async() => {
             case '2':
                 tasks.fullList();
                 
+            break;
+
+            case '3':
+                tasks.listPendingComplete();
+            break;
+
+            case '4':
+                tasks.listPendingComplete( complete );
             break;
         }
 
