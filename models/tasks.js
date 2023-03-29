@@ -19,6 +19,12 @@ class Tasks {
         this._list = {};
     }
 
+    deleteTask( id = '' ) {
+        if ( this._list[id] ) {
+            delete this._list[id];
+        }
+    }
+
     loadTasksFromArr( tasks = []) {
 
         tasks.forEach( (task) => {
