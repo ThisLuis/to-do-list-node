@@ -1,6 +1,6 @@
 import colors from 'colors';
 
-import { inquirerMenu, pause, readInput, listTasksToDelete, confirm } from './helpers/inquirer.js';
+import { inquirerMenu, pause, readInput, listTasksToDelete, confirm, showListCheckList } from './helpers/inquirer.js';
 import { saveDB, readDB } from './helpers/saveFile.js';
 import Task from './models/task.js';
 import Tasks from './models/tasks.js';
@@ -39,6 +39,11 @@ const main = async() => {
 
             case '4':
                 tasks.listPendingComplete( complete );
+            break;
+
+            case '5':
+                const ids = await showListCheckList( tasks.listArr);
+                console.log(ids);
             break;
 
             case '6': // TODO: Listado de las tareas que podemos borrar

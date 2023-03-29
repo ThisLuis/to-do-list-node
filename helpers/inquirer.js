@@ -114,6 +114,32 @@ const listTasksToDelete = async( tasks = []) => {
     return id;
 }
 
+const showListCheckList = async( tasks = []) => {
+
+    const choices = tasks.map( (task, index) => {
+
+        const idx = `${ index + 1}.`.green;
+
+        return {
+            value: task.id,
+            name: `${ idx } ${ task.description}`,
+            checked: ( task.completeOn ) ? true : false,
+        }
+    });
+
+    const question = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Seleccione',
+            choices
+        }
+    ];
+
+    const { ids } = await inquirer.prompt( question );
+    return ids;
+}
+
 const confirm = async( message) => {
     const question = [
         {
@@ -126,4 +152,4 @@ const confirm = async( message) => {
     const { ok } = await inquirer.prompt( question );
     return ok;
 }
-export { inquirerMenu, pause, readInput, listTasksToDelete, confirm };
+export { inquirerMenu, pause, readInput, listTasksToDelete, confirm, showListCheckList };
