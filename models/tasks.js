@@ -64,7 +64,7 @@ class Tasks {
 
                 if ( completeOn ) {
                     count += 1;
-                    console.log(`${ (count + '.').green } ${ description } :: ${ state }`);
+                    console.log(`${ (count + '.').green } ${ description } :: ${ completeOn.green }`);
                 }
 
             } else {
@@ -98,6 +98,24 @@ class Tasks {
         //         console.log(`${ idx } ${ description } :: ${ state }`); 
         //     })
         // }
+    }
+
+    toggleComplete ( ids = [] ) {
+        ids.forEach( id => {
+            const task = this._list[id];
+            if ( !task.completeOn ) {
+                task.completeOn = new Date().toISOString();
+            }
+        });
+
+        // ? Sacar ids de las tareas que no esten completadas y colocarlas en null
+        this.listArr.forEach( task => {
+
+            if ( !ids.includes( task.id ) ) {
+                this._list[task.id].completeOn = null;
+            }
+
+        })
     }
 }
 

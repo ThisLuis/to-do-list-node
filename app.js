@@ -43,7 +43,7 @@ const main = async() => {
 
             case '5':
                 const ids = await showListCheckList( tasks.listArr);
-                console.log(ids);
+                tasks.toggleComplete( ids );
             break;
 
             case '6': // TODO: Listado de las tareas que podemos borrar
